@@ -9,10 +9,40 @@
 </head>
 
 <body>
-  <img src="{{ url_for('static', filename='dog.png') }}" class="icon" />
-  <h3>Name my pet</h3>
+  <!-- <img src="{{ url_for('static', filename='dog.png') }}" class="icon" /> -->
+  <h3>UniApply: Easy GPT-based University Orientation Consultant for Master</h3>
   <form action="/" method="post">
-    <input type="text" name="animal" placeholder="Enter an animal" required />
+    <input type="text" name="school" placeholder="Enter your school" required />
+    <input type="text" name="major" placeholder="Enter your major" required />
+    <input type="text" name="score" placeholder="Enter your average score" required />
+     
+    <select required type="text" class="slect" name="EnglishBool">
+    <option value="I don't have English test score now">I don't have English test score now</option>
+    <option value="IELTS">IELTS</option>
+    <option value="TOEFL ">TOEFL </option>
+    <option value="PTE Academic">PTE Academic</option>
+    <option value="CPE">CPE</option>
+    </select>
+     
+<!--     <script>
+        $(function() {
+            var unSelected = "#999";
+            var selected = "#fff";
+            $("select").css("color", unSelected);
+            $("option").css("color", selected);
+            $("select").change(function() {
+                var selItem = $(this).val();
+                if(selItem == $(this).find('option:first').val()) {
+                    $(this).css("color", unSelected);
+                } else {
+                    $(this).css("color", selected);
+                }
+            });
+        });
+    </script> -->
+
+    <input type="text" name="Englishscore" placeholder="Enter your English test score" required />
+    <input type="text" name="Other" placeholder="Enter other information like intership and award" required />
     <input type="submit" value="Generate names" />
   </form>
   {% if result %}

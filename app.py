@@ -4,7 +4,7 @@ from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 # openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = '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'
+openai.api_key = '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'
 openai.Model.list()
 
 
@@ -22,7 +22,7 @@ def index():
         #     n = 1,
         # )
 
-        question = generate_prompt(animal)
+        question = generate_prompt('animal')
         # response = openai.ChatCompletion.create(
         #     # model="text-davinci-003",
         #     model="gpt-3.5-turbo",
@@ -39,7 +39,7 @@ def index():
 
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            messages=[{"role": "system", "content": "请你扮演对我的留学规划顾问。"},
+            messages=[{"role": "system", "content": "Please play the role of my University application consultant."},
             {"role": "user", "content": "我是一名学生，本科大学是暨南大学国际商务专业。我的gpa是3.51/5.0，雅思7分，单项最低分6.0。我有一次国企实习，一次德勤实习，一些奖项，社团活动。我想申请研究生，请你为我提供一个适合我的申请的学校列表。"},
             {"role": "assistant", "content": "1.格拉斯哥大学 MSc International Strategic Marketing 2.伯明翰大学 MSc Marketing 3.杜伦大学 MSc Marketing 4.布里斯托大学 MSc Marketing"},
             {"role": "user", "content": "我是一名学生，本科大学是西交利物浦大学。我的均分是71，雅思6.5分，单项最低分6.0。我有一次银行软件开发实习，一次互联网小公司数据科学方向实习，一些奖项，社团活动。我想申请研究生，请你为我提供一个适合我的申请的学校列表。"},
@@ -86,5 +86,6 @@ def generate_prompt(sch_sco):
     # 4. bg: 985(非顶尖)，网络安全本科，GPA88，申请时无雅思托福，一段昆士兰大学暑期科研并二作发了顶会，还有一篇国内二作和国内论文(论文署名顺序排名靠后)，信息安全大赛国三，参加大创和美赛(结果不好)
     #     录取结果：UCL DS: 被拒绝，悉尼大学: offer，格拉斯哥大学: offer，南安普顿cs: offer 
     # 返回英文结果""".format(sch_sco)
+    
     return """ 我的背景是双非一本，网络安全本科，GPA70，申请时无雅思托福，参加大创和美赛(结果不好)。
     我想申请英国的研究生，请你为我提供一个适合我的申请的学校列表。返回适合我申请的学校，专业，和录取概率这三项信息。"""
