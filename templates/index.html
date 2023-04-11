@@ -12,10 +12,16 @@
   <!-- <img src="{{ url_for('static', filename='dog.png') }}" class="icon" /> -->
   <h3>UniApply: Easy GPT-based University Orientation Consultant for Master</h3>
   <form action="/" method="post">
-    <input type="text" name="school" placeholder="Enter your school" required />
-    <input type="text" name="major" placeholder="Enter your major" required />
-    <input type="text" name="score" placeholder="Enter your average score" required />
-     
+    <p>Enter your school</p>
+    <input type="text" name="school" required />
+
+    <p>Enter your major</p>
+    <input type="text" name="major" required />
+
+    <p>Enter your average course score</p>
+    <input type="text" name="score" required />
+
+    <p>Select the English test you have taken</p>
     <select required type="text" class="slect" name="EnglishBool">
     <option value="I don't have English test score now">I don't have English test score now</option>
     <option value="IELTS">IELTS</option>
@@ -24,28 +30,25 @@
     <option value="CPE">CPE</option>
     </select>
      
-<!--     <script>
-        $(function() {
-            var unSelected = "#999";
-            var selected = "#fff";
-            $("select").css("color", unSelected);
-            $("option").css("color", selected);
-            $("select").change(function() {
-                var selItem = $(this).val();
-                if(selItem == $(this).find('option:first').val()) {
-                    $(this).css("color", unSelected);
-                } else {
-                    $(this).css("color", selected);
-                }
-            });
-        });
-    </script> -->
+    <p>Enter your English test score</p>
+    <input type="text" name="Englishscore" value="0" required />
 
-    <input type="text" name="Englishscore" placeholder="Enter your English test score" required />
-    <input type="text" name="Other" placeholder="Enter other information like intership and award" required />
-    <input type="submit" value="Generate names" />
+    <p>Enter your location you plan to study</p>
+    <input type="text" name="location" value="eg.American" required />
+
+    <p>Enter other information such as intership and award</p>
+    <textarea name= other rows="5" cols="33">
+      一段昆士兰大学暑期科研并二作发了顶会，还有一篇国内二作和国内论文(论文署名顺序排名靠后)，信息安全大赛国三，参加大创和美赛(结果不好)
+    </textarea>
+    <!-- <input type="text" name="Other" placeholder="Enter other information like intership and award" required /> -->
+
+
+    <p> </p>
+    <input type="submit" value="Generate suggested university list" />
+
+    <p> </p>
+    {% if result %}
+    <p class="result">{{ result }}</p>
+    {% endif %}
   </form>
-  {% if result %}
-  <div class="result">{{ result }}</div>
-  {% endif %}
 </body>

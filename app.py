@@ -4,14 +4,22 @@ from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 # openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = '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'
+openai.api_key = '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'
 openai.Model.list()
 
 
 @app.route("/", methods=("GET", "POST"))
 def index():
     if request.method == "POST":
-        animal = request.form["animal"]
+        school = request.form["school"]
+        major = request.form["major"]
+        score = request.form["score"]
+        EnglishBool = request.form["EnglishBool"]
+        Englishscore = request.form["Englishscore"]
+        other = request.form["other"]
+        location = request.form["location"]
+
+        question = generate_prompt(school, major, score, EnglishBool, Englishscore, other, location)
 
         # response = openai.Completion.create(
             # model="text-davinci-003",
@@ -22,7 +30,6 @@ def index():
         #     n = 1,
         # )
 
-        question = generate_prompt('animal')
         # response = openai.ChatCompletion.create(
         #     # model="text-davinci-003",
         #     model="gpt-3.5-turbo",
@@ -69,7 +76,7 @@ def index():
 #         animal.capitalize()
 #     )
 
-def generate_prompt(sch_sco):
+def generate_prompt(school, major, score, EnglishBool, Englishscore, other, location):
     # sch_sco = sch_sco.split('_')
     # major = sch_sco[0]
     # school = sch_sco[1]
@@ -87,5 +94,12 @@ def generate_prompt(sch_sco):
     #     录取结果：UCL DS: 被拒绝，悉尼大学: offer，格拉斯哥大学: offer，南安普顿cs: offer 
     # 返回英文结果""".format(sch_sco)
     
-    return """ 我的背景是双非一本，网络安全本科，GPA70，申请时无雅思托福，参加大创和美赛(结果不好)。
-    我想申请英国的研究生，请你为我提供一个适合我的申请的学校列表。返回适合我申请的学校，专业，和录取概率这三项信息。"""
+    res = """ 我的本科大学是{}，我的专业是{}，我的成绩是{}。""".format(school, major, score)
+    if EnglishBool == "I don't have English test score now":
+        res += "我目前没有雅思或托福这类成绩"
+    else:
+        res += "我的{}成绩是{}".format(EnglishBool, Englishscore)
+    res += other
+    res += "我想申请{}地区的研究生，请你为我提供一个适合我的申请的学校列表。用英文返回适合我申请的学校，专业，和录取概率这三项信息。".format(location)
+    res += "在返回的列表中，包含两个高概率的，两个中概率的，两个低概率的"
+    return res
