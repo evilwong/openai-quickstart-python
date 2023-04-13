@@ -1,109 +1,215 @@
-@font-face {
-  font-family: "ColfaxAI";
-  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
-      format("woff2"),
-    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-@font-face {
-  font-family: "ColfaxAI";
-  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
-    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-body,
-input {
-  font-size: 16px;
-  line-height: 24px;
-  color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
-}
+
+/* Set background color and font family */
 body {
+  background-color: #a8dadc;
+  font-family: Arial, sans-serif;
+}
+
+/* Style header */
+header {
+  background-color: #f1faee;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+nav {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
+  height: 60px;
 }
-.icon {
-  width: 34px;
-}
-h3 {
-  font-size: 32px;
-  line-height: 40px;
-  font-weight: bold;
-  color: #202123;
-  margin: 16px 0 40px;
-}
-form {
+
+.menu {
+  list-style-type: none;
   display: flex;
-  flex-direction: column;
-  width: 80%;
 }
 
-input[type="text"] {
-  height: 25px;
-  padding: 7px 7px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  margin-bottom: 14px;
-  width: 400px;
+.menu li {
+  margin-right: 20px;
 }
-::placeholder {
-  color: #8e8ea0;
-  opacity: 1;
-  }
 
+.menu li:last-child {
+  margin-right: 0;
+}
 
-p {
+.menu li a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+  color: #666;
+}
+
+.logo {
+  color: #457b9d;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user a {
+  color: #333;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  padding-right: 5px;
+}
+
+.user a:hover {
+  color: #666;
+}
+
+/* Style form */
+form {
+  margin-top: 70px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+form h3 {
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+form div {
+  margin-bottom: 20px;
+  display:flex;
+}
+
+form p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+form input[type="text"], form select {
+  padding: 10px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 350px;
   font-size: 16px;
-  line-height: 24px;
-  color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
+  margin-bottom: 10px;
 }
 
-select{
-  height: 39px;
-  padding: 7px 7px;
-  border: 1px solid #10a37f;
-  border-radius: 4px;
-  margin-bottom: 24px;
-  font-size: 16px;
-  line-height: 24px;
-  width: 400px;
-/*  color: #353740;*/
-  font-family: "ColfaxAI", Helvetica, sans-serif;
-  //隐藏select的下拉图标
-  appearance: none;
+form select {
   -webkit-appearance: none;
   -moz-appearance: none;
-  //清除select聚焦时候的边框颜色
-  outline: none;
-}
-::placeholder {
-  color: #8e8ea0;
-  opacity: 1;
-  }
-
-textarea{
-  font-size: 16px;
-  line-height: 24px;
-  color: #353740;
-  font-family: "ColfaxAI", Helvetica, sans-serif;
-}
-
-input[type="submit"] {
-  padding: 12px 0;
-  color: #fff;
-  background-color: #10a37f;
-  border: none;
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
+  appearance: none;
+  background: url(../img/select-arrow.png) no-repeat right #fff;
+  background-size: 16px 16px;
+  padding-right: 35px;
   width: 350px;
+  border: 2px solid #000;
+  border-radius: 5px;
 }
-/*.result {
+
+form input[type="submit"] {
+  background-color: #457b9d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+  background-color: #666;
+}
+
+form .result {
   font-weight: bold;
-  margin-top: 40px;*/
+  margin-top: 20px;
 }
+
+/* Set page width */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Set textarea width */
+textarea {
+  width: 900px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  padding: 
+}
+
+form div {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+}
+
+form div:last-child {
+justify-content: center;
+}
+
+form input[type="text"],
+form select {
+margin-left: 10px;
+margin-right: 0;
+}
+
+textarea {
+margin: 0 auto;
+display: block;
+}
+
+form div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+form p {
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 15px;
+}
+
+form p:first-child {
+  margin-right: 0;
+}
+
+form textarea {
+  width: 920px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input[type="text"] {
+  width: 400px;
+  margin-right: 10px;
+}
+
+form select {
+  width: 400px;
+  margin-right: 10px;
+}
+
+/* 监听悬浮框  */

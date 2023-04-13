@@ -4,7 +4,7 @@ from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 # openai.api_key = os.getenv("OPENAI_API_KEY")
-openai.api_key = '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'
+openai.api_key = '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'
 openai.Model.list()
 
 
@@ -21,29 +21,6 @@ def index():
 
         question = generate_prompt(school, major, score, EnglishBool, Englishscore, other, location)
 
-        # response = openai.Completion.create(
-            # model="text-davinci-003",
-        #     model="gpt-3.5-turbo",
-        #     prompt=generate_prompt(animal),
-        #     temperature=0.4,
-        #     max_tokens=1000,
-        #     n = 1,
-        # )
-
-        # response = openai.ChatCompletion.create(
-        #     # model="text-davinci-003",
-        #     model="gpt-3.5-turbo",
-        #     prompt=generate_prompt(animal),
-        #     # prompt=[{"role": "system", "content": "You are a helpful Graduate application consultant assistant."},
-        #     # {"role": "user", "content": "我是一名学生，本科大学是暨南大学国际商务专业。我的gpa是3.51/5.0，雅思7分，单项最低分6.0。我有一次国企实习，一次德勤实习，一些奖项，社团活动。我想申请研究生，请你为我提供一个适合我的申请的学校列表。"},
-        #     # {"role": "assistant", "content": "1.格拉斯哥大学 MSc International Strategic Marketing 2.伯明翰大学 MSc Marketing 3.杜伦大学 MSc Marketing 4.布里斯托大学 MSc Marketing"},
-        #     # {"role": "user", "content": "我是一名学生，本科大学是西交利物浦大学。我的均分是71，雅思6.5分，单项最低分6.0。我有一次银行软件开发实习，一次互联网小公司数据科学方向实习，一些奖项，社团活动。我想申请研究生，请你为我提供一个适合我的申请的学校列表。"},
-        #     # {"role": "assistant", "content": "1.University of edinburgh MSc Informatcs 2.University college London 数字人文 3.University of Manchester cs 4.UCLA cs .University of Southampton cs"},
-        #     # {"role": "user", "content": question}],
-        #     temperature=0.4,
-        #     max_tokens=1000,
-        # )
-
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "system", "content": "Please play the role of my University application consultant."},
@@ -56,9 +33,19 @@ def index():
             max_tokens=500,
         )
 
-        print(response)
+        # response = openai.Completion.create(
+        #     model="text-davinci-003",
+        #     # model="gpt-3.5-turbo",
+        #     prompt=other,
+        #     temperature=0.4,
+        #     max_tokens=1000,
+        #     n = 1,
+        # )
+
+        # print(response)
         # print(response.choices[0].message.content)
         return redirect(url_for("index", result=response.choices[0].message.content))
+        # return redirect(url_for("index", result=response.choices[0].text))
 
     result = request.args.get("result")
     return render_template("index.html", result=result)

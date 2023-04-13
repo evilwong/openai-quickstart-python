@@ -1,54 +1,87 @@
+
 <!DOCTYPE html>
 <head>
-  <title>OpenAI Quickstart</title>
-  <link
-    rel="shortcut icon"
-    href="{{ url_for('static', filename='dog.png') }}"
-  />
-  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+  <title>UniApply</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"
 </head>
-
 <body>
-  <!-- <img src="{{ url_for('static', filename='dog.png') }}" class="icon" /> -->
-  <h3>UniApply: Easy GPT-based University Orientation Consultant for Master</h3>
+
+  <header>
+    <nav>
+      <ul class="menu">
+<!--    <li><a href="#">菜单项1</a></li>
+        <li><a href="#">菜单项2</a></li>
+        <li><a href="#">菜单项3</a></li> -->
+      </ul>
+
+      <div class="logo">
+        <h3>UniApply: GPT-based University Application Consultant</h3>
+      </div>
+
+      <div class="user">
+        <!-- <a href="#"><img src="头像图片地址" alt="用户头像"></a> -->
+        <a href="#">Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- <h3>UniApply: Easy GPT-based University Orientation Consultant for Master</h3> -->
   <form action="/" method="post">
-    <p>Enter your school</p>
-    <input type="text" name="school" required />
+    <div class="form-row">
+      <p>Enter your school</p>
+      <input type="text" name="school" required />
+    </div>
 
-    <p>Enter your major</p>
-    <input type="text" name="major" required />
+    <div class="form-row">
+      <p>Enter your major</p>
+      <input type="text" name="major" required />
+    </div>
 
-    <p>Enter your average course score</p>
-    <input type="text" name="score" required />
+    <div class="form-row">
+      <p>Enter your average course score</p>
+      <input type="text" name="score" required />
+    </div>
 
-    <p>Select the English test you have taken</p>
-    <select required type="text" class="slect" name="EnglishBool">
-    <option value="I don't have English test score now">I don't have English test score now</option>
-    <option value="IELTS">IELTS</option>
-    <option value="TOEFL ">TOEFL </option>
-    <option value="PTE Academic">PTE Academic</option>
-    <option value="CPE">CPE</option>
-    </select>
-     
-    <p>Enter your English test score</p>
-    <input type="text" name="Englishscore" value="0" required />
+    <div class="form-row">
+      <p>Enter your annual budget</p>
+      <input type="text" name="budget" required />
+    </div>
 
-    <p>Enter your location you plan to study</p>
-    <input type="text" name="location" value="eg.American" required />
+    <div class="form-row">
+      <p>Select the English test you have taken</p>
+      <select required type="text" class="slect" name="EnglishBool">
+      <option value="I don't have English test score now">I don't have English test score now</option>
+      <option value="IELTS">IELTS</option>
+      <option value="TOEFL ">TOEFL </option>
+      <option value="PTE Academic">PTE Academic</option>
+      <option value="CPE">CPE</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <p>Enter your English test score</p>
+      <input type="text" name="Englishscore" placeholder="I don't have a score yet" required />
+    </div>
+
+    <div class="form-row">
+      <p>Enter your location you plan to study</p>
+      <input type="text" name="location" placeholder="American" required />
+    </div>
 
     <p>Enter other information such as intership and award</p>
-    <textarea name= other rows="5" cols="33">
-      一段昆士兰大学暑期科研并二作发了顶会，还有一篇国内二作和国内论文(论文署名顺序排名靠后)，信息安全大赛国三，参加大创和美赛(结果不好)
-    </textarea>
-    <!-- <input type="text" name="Other" placeholder="Enter other information like intership and award" required /> -->
+    <textarea name= other rows="5" cols="33"></textarea>
 
+    <div>
+      <p> </p>
+      <input type="submit" value="Generate suggested university list" />
+      <p> </p>
+    </div>
 
-    <p> </p>
-    <input type="submit" value="Generate suggested university list" />
+    <div>
+      {% if result %}
+      <p class="result">{{ result }}</p>
+      {% endif %}
+    </div>
 
-    <p> </p>
-    {% if result %}
-    <p class="result">{{ result }}</p>
-    {% endif %}
   </form>
-</body>
+</body>   
